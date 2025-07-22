@@ -23,9 +23,9 @@ const fjallaOne = Fjalla_One({
 });
 
 export const metadata: Metadata = {
-  title: "Due Fratelli - Lounge Cafe",
+  title: "Due Fratelli - Italian Restaurant",
   description:
-    "Savor moments of bliss with expertly crafted coffees and delectable pastries",
+    "Savor moments of bliss with authentic Italian cuisine",
 };
 
 export default function RootLayout({
