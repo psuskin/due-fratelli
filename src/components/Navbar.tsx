@@ -45,10 +45,10 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { href: '#menu', label: 'Speisekarte' },
-    { href: '#about', label: 'Über uns' },
-    { href: '#events', label: 'Veranstaltungen' },
-    { href: '#contact', label: 'Kontakt' },
+    { href: '/menu', label: 'Speisekarte' },
+    { href: '/about', label: 'Über uns' },
+    { href: '/events', label: 'Veranstaltungen' },
+    { href: '/contact', label: 'Kontakt' },
   ];
 
   return (
@@ -73,7 +73,7 @@ const Navbar = () => {
               : 'bg-[#dfbf5b]/90 backdrop-blur-sm'
           }
           md:rounded-2xl
-          w-[calc(100%-2rem)] md:w-[35%] md:min-w-[500px]
+          w-[calc(100%-2rem)] md:w-[40%] md:min-w-[500px]
           overflow-hidden
         `}
       >

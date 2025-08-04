@@ -2,7 +2,7 @@ import Contact from '@/components/Contact';
 
 const ContactMainPage = () => {
   return (
-    <main className="bg-white">
+    <main className="pt-20 bg-white">
       <Contact />
     </main>
   );
