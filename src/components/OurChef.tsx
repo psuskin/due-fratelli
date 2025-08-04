@@ -26,7 +26,7 @@ const OurChef = () => {
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://le-cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/dms3rep/multi/opt/WhatsApp+Image+2024-07-08+at+15.50.13-1920w.jpeg?Expires=1753290971&Signature=VDzMBogJYwE5veZs3Aw70mxX01uuIVc9sOelkPoHcQ857nxF7BN6n1StDz2s0JbxIaH4CsJYhwrVYM5g3tqWLVmfUdwOZZ0JADxGqwvsaW3oc7vPILLO7avaiuufTt9pvoaDSAbXLI3PGakdjIL4o2VDDrVaaqyVj40Bu10os1l5P7Dq64Ej9g~R~wtLa2Vft8q3Vj5goh5~~gSjc5uOZrE7jhAd~GtvUu6TPhyP3FooauGZh0UndjkSNAG9w7ma~UZc7r-f49GF0LOsw~Ordevr7fqcYdlh-Bu-ssM2CqdfnjhYlWCpaKqqiv8r9fbhO1fn0GmlO5r6exP6Havl1A__&Key-Pair-Id=K2NXBXLF010TJW"
+            src="https://le-cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/dms3rep/multi/opt/WhatsApp+Image+2024-07-08+at+15.50.13-1920w.jpeg?Expires=1756711519&Signature=Dp9JOIhcTu~yhhU3WVqhzlIOakVw2KpojF3lp4RzRgYPvU5ch-HWeZ~UzYwGw4fIV8NQqK9XAgicmQBx5PLxj1x9YBpwSBtTIqBch~I~NfUxOR0oTKuSJPT0GtkBAgCOK-ntVqLqc3qCJ5kEb4mhlnzFvkjnDF7TO3FwhFAoLcH069ATlaWHbeNHMDBL~2SPmJ0-5EczwzTZo2o5LtHaunnse3dQa3hB3LZIWd2XW69mJC1Ke4PqOT--8Sro2iPYD-nYiQPX59U0ws-1IzGaHFGodaS~06GbH7fB5dJTYowWkR7-uPUKC0Tbm2zOHllc~dNH4btxUzWH~kYoM6a-wA__&Key-Pair-Id=K2NXBXLF010TJW"
             alt="Our Executive Chef preparing a dish with precision and passion"
             fill
             className="object-cover"

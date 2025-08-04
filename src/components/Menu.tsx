@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Category = {
   id:
@@ -21,6 +21,22 @@ type Category = {
 const Menu = () => {
   const [selectedPdfUrl, setSelectedPdfUrl] = useState<string | null>(null);
   const [selectedMenuName, setSelectedMenuName] = useState<string>('');
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const userAgent = typeof window !== 'undefined' ? window.navigator.userAgent : '';
+      const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        userAgent,
+      );
+      setIsMobile(mobile || window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Menu categories with PDF links
   const categories: Category[] = [
@@ -74,7 +90,7 @@ const Menu = () => {
     },
   ];
 
-  // PDF menu links (keeping original)
+  // PDF menu links
   const pdfMenus = [
     {
       id: 'desserts',
@@ -96,11 +112,16 @@ const Menu = () => {
     },
   ];
 
-  // Split categories into left and right sides
   const leftCategories = categories.slice(0, 4);
   const rightCategories = categories.slice(4, 8);
 
   const openPdfModal = (pdfUrl: string, menuName: string) => {
+    // On mobile, open PDF in new tab instead of modal
+    if (isMobile) {
+      window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
     setSelectedPdfUrl(pdfUrl);
     setSelectedMenuName(menuName);
   };
@@ -130,10 +151,10 @@ const Menu = () => {
           {/* Main Content */}
           <div className="relative z-10">
             <h2 className="text-4xl font-light text-stone-800 sm:text-5xl tracking-wide">
-              Unser <span className="font-normal text-[#dfbf5b]">Menü</span>
+              Unser <span className="font-normal text-yellow-600">Menü</span>
             </h2>
             <motion.div
-              className="mt-4 h-[1px] bg-[#dfbf5b] mx-auto"
+              className="mt-4 h-[1px] bg-yellow-600 mx-auto"
               initial={{ width: 0 }}
               animate={{ width: '60px' }}
               transition={{ delay: 0.5, duration: 0.8 }}
@@ -156,7 +177,7 @@ const Menu = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-6 relative">
               {/* Center Line - Hidden on mobile, visible on lg and up */}
-              <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#dfbf5b]/30 to-transparent transform -translate-x-1/2" />
+              <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-yellow-600/30 to-transparent transform -translate-x-1/2" />
 
               {/* Left Side - 4 cards with right-aligned text */}
               <div className="space-y-6">
@@ -170,18 +191,36 @@ const Menu = () => {
                       delay: index * 0.1,
                       duration: 0.5,
                     }}
-                    className="group cursor-pointer relative block w-full p-8 bg-white overflow-hidden transition-all duration-300"
+                    className="group cursor-pointer border-0 relative block w-full p-8 bg-white overflow-hidden transition-all duration-300"
                     whileTap={{ scale: 0.98 }}
                   >
                     {/* Filling background effect */}
-                    <div className="absolute inset-0 bg-[#dfbf5b]/5 transform origin-bottom transition-transform duration-300 ease-out scale-y-0 group-hover:scale-y-100" />
+                    <div className="absolute inset-0 bg-yellow-600/5 transform origin-bottom transition-transform duration-300 ease-out scale-y-0 group-hover:scale-y-100" />
 
                     {/* Content - Right aligned on lg and up */}
                     <div className="relative z-10 text-left lg:text-right">
                       <div className="flex items-start justify-between lg:flex-row-reverse mb-4">
-                        <h4 className="text-xl font-medium text-stone-800 group-hover:text-[#dfbf5b] transition-colors duration-300">
+                        <h4 className="text-xl font-medium text-stone-800 group-hover:text-yellow-600 transition-colors duration-300">
                           {category.name}
                         </h4>
+                        {/* Mobile indicator */}
+                        {isMobile && (
+                          <div className="flex items-center text-yellow-600 ml-2">
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
+                            </svg>
+                          </div>
+                        )}
                       </div>
 
                       {category.description && (
@@ -190,12 +229,12 @@ const Menu = () => {
                         </p>
                       )}
 
-                      <div className="mt-4 text-xs text-[#dfbf5b] font-medium uppercase tracking-wide">
-                        Menü anzeigen
+                      <div className="mt-4 text-xs text-yellow-600 font-medium uppercase tracking-wide">
+                        {isMobile ? 'PDF öffnen' : 'Menü anzeigen'}
                       </div>
 
                       {/* Bottom border */}
-                      <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-[#dfbf5b] transition-colors duration-300" />
+                      <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-yellow-600 transition-colors duration-300" />
                     </div>
                   </motion.button>
                 ))}
@@ -213,18 +252,36 @@ const Menu = () => {
                       delay: (index + 4) * 0.1,
                       duration: 0.5,
                     }}
-                    className="group cursor-pointer relative block w-full p-8 bg-white overflow-hidden transition-all duration-300"
+                    className="group cursor-pointer relative block w-full p-8 bg-white overflow-hidden transition-all duration-300 border-0"
                     whileTap={{ scale: 0.98 }}
                   >
                     {/* Filling background effect */}
-                    <div className="absolute inset-0 bg-[#dfbf5b]/5 transform origin-bottom transition-transform duration-300 ease-out scale-y-0 group-hover:scale-y-100" />
+                    <div className="absolute inset-0 bg-yellow-600/5 transform origin-bottom transition-transform duration-300 ease-out scale-y-0 group-hover:scale-y-100" />
 
                     {/* Content - Left aligned */}
                     <div className="relative z-10 text-left">
                       <div className="flex items-start justify-between mb-4">
-                        <h4 className="text-xl font-medium text-stone-800 group-hover:text-[#dfbf5b] transition-colors duration-300">
+                        <h4 className="text-xl font-medium text-stone-800 group-hover:text-yellow-600 transition-colors duration-300">
                           {category.name}
                         </h4>
+                        {/* Mobile indicator */}
+                        {isMobile && (
+                          <div className="flex items-center text-yellow-600 ml-2">
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
+                            </svg>
+                          </div>
+                        )}
                       </div>
 
                       {category.description && (
@@ -233,12 +290,12 @@ const Menu = () => {
                         </p>
                       )}
 
-                      <div className="mt-4 text-xs text-[#dfbf5b] font-medium uppercase tracking-wide">
-                        Menü anzeigen
+                      <div className="mt-4 text-xs text-yellow-600 font-medium uppercase tracking-wide">
+                        {isMobile ? 'PDF öffnen' : 'Menü anzeigen'}
                       </div>
 
                       {/* Bottom border */}
-                      <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-[#dfbf5b] transition-colors duration-300" />
+                      <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-yellow-600 transition-colors duration-300" />
                     </div>
                   </motion.button>
                 ))}
@@ -247,9 +304,9 @@ const Menu = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* PDF Modal */}
+        {/* PDF Modal - Only show on desktop */}
         <AnimatePresence>
-          {selectedPdfUrl && (
+          {selectedPdfUrl && !isMobile && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -272,34 +329,85 @@ const Menu = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-stone-200">
                   <h3 className="text-xl font-medium text-stone-800">{selectedMenuName}</h3>
-                  <button
-                    onClick={closePdfModal}
-                    className="p-2 rounded-full hover:bg-stone-100 transition-colors duration-200"
-                  >
-                    <svg
-                      className="w-6 h-6 text-stone-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+                  <div className="flex items-center gap-4">
+                    {/* Download button */}
+                    <a
+                      href={selectedPdfUrl}
+                      download
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-yellow-600 hover:text-yellow-700 transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                      Download
+                    </a>
+                    {/* Open in new tab button */}
+                    <a
+                      href={selectedPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-yellow-600 hover:text-yellow-700 transition-colors"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                      Neuer Tab
+                    </a>
+                    {/* Close button */}
+                    <button
+                      onClick={closePdfModal}
+                      className="p-2 rounded-full hover:bg-stone-100 transition-colors duration-200"
+                    >
+                      <svg
+                        className="w-6 h-6 text-stone-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
 
-                {/* PDF Iframe */}
+                {/* PDF Iframe with enhanced mobile support */}
                 <div className="h-[calc(100%-80px)]">
                   <iframe
-                    src={selectedPdfUrl}
+                    src={`${selectedPdfUrl}#toolbar=1&navpanes=1&scrollbar=1&view=FitH`}
                     title={selectedMenuName}
                     className="w-full h-full border-0"
                     loading="lazy"
+                    allow="fullscreen"
+                    style={{
+                      border: 'none',
+                      outline: 'none',
+                    }}
                   />
                 </div>
               </motion.div>
@@ -316,7 +424,7 @@ const Menu = () => {
         >
           <div className="text-center mb-12">
             <h3 className="text-2xl font-light text-stone-800">Weitere Speisekarten</h3>
-            <div className="mt-2 h-[1px] bg-[#dfbf5b] w-16 mx-auto" />
+            <div className="mt-2 h-[1px] bg-yellow-600 w-16 mx-auto" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -326,22 +434,22 @@ const Menu = () => {
                 href={menu.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative block p-8 bg-white rounded-lg overflow-hidden"
+                className="group relative block p-8 bg-white rounded-lg overflow-hidden border border-stone-100 hover:border-yellow-600/20"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {/* Filling background effect */}
-                <div className="absolute inset-0 bg-[#dfbf5b]/10 transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100" />
+                <div className="absolute inset-0 bg-yellow-600/10 transform origin-left transition-transform duration-300 ease-out scale-x-0 group-hover:scale-x-100" />
 
                 {/* Content */}
                 <div className="relative z-10">
                   <div className="flex items-start justify-between">
-                    <h4 className="text-lg font-medium text-stone-800 group-hover:text-[#dfbf5b] transition-colors duration-300">
+                    <h4 className="text-lg font-medium text-stone-800 group-hover:text-yellow-600 transition-colors duration-300">
                       {menu.name}
                     </h4>
-                    <div className="ml-4 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm group-hover:bg-[#dfbf5b]/10 transition-colors duration-300">
+                    <div className="ml-4 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm group-hover:bg-yellow-600/10 transition-colors duration-300">
                       <svg
-                        className="w-4 h-4 text-stone-400 group-hover:text-[#dfbf5b]"
+                        className="w-4 h-4 text-stone-400 group-hover:text-yellow-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -361,7 +469,7 @@ const Menu = () => {
                   </p>
 
                   {/* Bottom border */}
-                  <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-[#dfbf5b] transition-colors duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-yellow-600 transition-colors duration-300" />
                 </div>
               </motion.a>
             ))}
