@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Button from "./Button";
-import ReservationModal from "./ReservationModal";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useState } from 'react';
+import Button from './Button';
+import ReservationModal from './ReservationModal';
 
 const OurChef = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,8 +67,8 @@ const OurChef = () => {
                   seines Berufs
                 </h2>
                 <p className="text-xl text-white/80 max-w-md mb-8">
-                  Mit Leidenschaft und Präzision in jedes Gericht, unser Chef
-                  schafft kulinarische Meisterwerke, die eine Geschichte erzählen.
+                  Mit Leidenschaft und Präzision in jedes Gericht, unser Chef schafft kulinarische
+                  Meisterwerke, die eine Geschichte erzählen.
                 </p>
 
                 {/* Reservation Button */}
@@ -88,7 +88,7 @@ const OurChef = () => {
         </div>
 
         {/* Age Badge */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
           viewport={{ once: true }}
@@ -99,7 +99,7 @@ const OurChef = () => {
           <span className="text-sm text-white/90 uppercase tracking-wider">
             Jahre alt
           </span>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Content Section */}
@@ -117,23 +117,18 @@ const OurChef = () => {
                 className="space-y-8"
               >
                 <div className="space-y-6">
-                  <div
-                    className="h-px w-12"
-                    style={{ backgroundColor: "#dfbf5b" }}
-                  />
+                  <div className="h-px w-12" style={{ backgroundColor: '#dfbf5b' }} />
                   <p className="text-lg text-stone-600 leading-relaxed">
-                    Diese Geschichte beginnt in Albanien. Tirana, die Hauptstadt
-                    eines ehrwürdigen Landes. Toni ist noch ein Teenager, aber
-                    sein kulinares Talent ist bereits offensichtlich. Bald
-                    darauf arbeitet er für das beste Restaurant der Stadt.
+                    Diese Geschichte beginnt in Albanien. Tirana, die Hauptstadt eines ehrwürdigen
+                    Landes. Toni ist noch ein Teenager, aber sein kulinares Talent ist bereits
+                    offensichtlich. Bald darauf arbeitet er für das beste Restaurant der Stadt.
                   </p>
                 </div>
 
                 <div className="pl-6 border-l-2 border-[#dfbf5b]">
                   <p className="text-lg text-stone-600 leading-relaxed">
-                    Im Jahr 2020, in der Wirbelsturm der Pandemie, wird er Teil
-                    unserer DUE-Familie. Jeder erkennt sofort: &quot;Ein
-                    Glücksfall!&quot;
+                    Im Jahr 2020, in der Wirbelsturm der Pandemie, wird er Teil unserer DUE-Familie.
+                    Jeder erkennt sofort: &quot;Ein Glücksfall!&quot;
                   </p>
                 </div>
               </motion.div>
@@ -147,35 +142,32 @@ const OurChef = () => {
                 className="space-y-8"
               >
                 <p className="text-lg text-stone-600 leading-relaxed">
-                  Der Erste im Küche und der Letzte, der geht. Was passieren
-                  musste, ist passiert: Im Jahr 2022 wurde Toni unser Chef. Es
-                  gibt keinen Zweifel: Er hat Due Fratelli auf den nächsten
-                  Level gebracht.
+                  Der Erste im Küche und der Letzte, der geht. Was passieren musste, ist passiert:
+                  Im Jahr 2022 wurde Toni unser Chef. Es gibt keinen Zweifel: Er hat Due Fratelli
+                  auf den nächsten Level gebracht.
                 </p>
 
                 {/* Values */}
                 <div className="pt-8 space-y-4">
                   <div className="flex flex-col gap-4">
-                    {["Leidenschaft", "Harte Arbeit", "Perfektion"].map(
-                      (value, index) => (
-                        <motion.div
-                          key={value}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 0.4,
-                            delay: 0.2 + index * 0.1,
-                          }}
-                          className="group flex items-center gap-4 cursor-default"
-                        >
-                          <span className="h-px w-8 group-hover:w-12 transition-all duration-300 bg-[#dfbf5b]" />
-                          <span className="text-2xl font-light text-stone-800 group-hover:text-[#dfbf5b] transition-colors duration-300">
-                            {value}
-                          </span>
-                        </motion.div>
-                      )
-                    )}
+                    {['Leidenschaft', 'Harte Arbeit', 'Perfektion'].map((value, index) => (
+                      <motion.div
+                        key={value}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.4,
+                          delay: 0.2 + index * 0.1,
+                        }}
+                        className="group flex items-center gap-4 cursor-default"
+                      >
+                        <span className="h-px w-8 group-hover:w-12 transition-all duration-300 bg-[#dfbf5b]" />
+                        <span className="text-2xl font-light text-stone-800 group-hover:text-[#dfbf5b] transition-colors duration-300">
+                          {value}
+                        </span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
