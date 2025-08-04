@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Button from "./Button";
-import ReservationModal from "./ReservationModal";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useState } from 'react';
+import Button from './Button';
+import ReservationModal from './ReservationModal';
 
 const Events = () => {
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
 
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32">
+    <section id="events" className="relative py-16 sm:py-24 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Title */}
         <motion.div
@@ -96,9 +96,8 @@ const Events = () => {
                         Exklusive Räumlichkeiten
                       </h3>
                       <p className="text-stone-200 text-xs sm:text-sm leading-relaxed">
-                        Zwei Etagen mit elegantem Raum für Ihre besonderen
-                        Anlässe. Reservieren Sie das gesamte Restaurant für Ihre
-                        Veranstaltung.
+                        Zwei Etagen mit elegantem Raum für Ihre besonderen Anlässe. Reservieren Sie
+                        das gesamte Restaurant für Ihre Veranstaltung.
                       </p>
                     </div>
                   </div>
@@ -119,42 +118,33 @@ const Events = () => {
               Ihre besonderen <span className="text-[#dfbf5b]">Anlässe</span>
             </h3>
             <p className="text-stone-600 leading-relaxed mb-8 sm:mb-12">
-              Unsere Räumlichkeiten haben schon viele Feste und Feiern gesehen.
-              Kein Wunder – bei uns finden Sie auf zwei Stockwerken viel Platz
-              und Gemütlichkeit. Wenn Sie rechtzeitig reservieren und genügend
-              Gäste mitbringen, stellen wir Ihnen unser Restaurant sogar
+              Unsere Räumlichkeiten haben schon viele Feste und Feiern gesehen. Kein Wunder – bei
+              uns finden Sie auf zwei Stockwerken viel Platz und Gemütlichkeit. Wenn Sie rechtzeitig
+              reservieren und genügend Gäste mitbringen, stellen wir Ihnen unser Restaurant sogar
               exklusiv zur Verfügung!
             </p>
 
             {/* Features Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-8 sm:mb-12">
-              {[
-                "Private Veranstaltungen",
-                "Firmenfeiern",
-                "Hochzeitsfeiern",
-                "Familienfeiern",
-              ].map((feature, index) => (
-                <motion.div
-                  key={feature}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-1 h-4 bg-[#dfbf5b]/50 rounded-full" />
-                  <span className="text-stone-600 text-sm font-medium">
-                    {feature}
-                  </span>
-                </motion.div>
-              ))}
+              {['Private Veranstaltungen', 'Firmenfeiern', 'Hochzeitsfeiern', 'Familienfeiern'].map(
+                (feature, index) => (
+                  <motion.div
+                    key={feature}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="w-1 h-4 bg-[#dfbf5b]/50 rounded-full" />
+                    <span className="text-stone-600 text-sm font-medium">{feature}</span>
+                  </motion.div>
+                ),
+              )}
             </div>
 
             {/* CTA Button */}
-            <Button
-              variant="outline"
-              onClick={() => setIsReservationModalOpen(true)}
-            >
+            <Button variant="outline" onClick={() => setIsReservationModalOpen(true)}>
               Event anfragen
             </Button>
           </motion.div>

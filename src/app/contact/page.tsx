@@ -1,5 +1,11 @@
-const Contact = () => {
-  return <main className="bg-white">contact</main>;
+import Contact from '@/components/Contact';
+
+const ContactMainPage = () => {
+  return (
+    <main className="bg-white">
+      <Contact />
+    </main>
+  );
 };
 
-export default Contact;
+export default ContactMainPage;

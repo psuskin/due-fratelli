@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import ReservationModal from "./ReservationModal";
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import ReservationModal from './ReservationModal';
 
 const ReservationButton = ({
   isScrolled,
-  className = "",
+  className = '',
   onClick,
 }: {
   isScrolled: boolean;
@@ -19,10 +19,10 @@ const ReservationButton = ({
     whileTap={{ scale: 0.98 }}
     onClick={onClick}
     className={`
-      bg-[#dfbf5b] text-white rounded-full
+      bg-[#dfbf5b] cursor-pointer text-white rounded-full
       transition-all duration-200 hover:bg-[#dfbf5b]/90
       shadow-sm hover:shadow-md
-      ${isScrolled ? "py-2 px-6" : "py-2 px-6"}
+      ${isScrolled ? 'py-2 px-6' : 'py-2 px-6'}
       ${className}
     `}
   >
@@ -40,14 +40,15 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { href: "#menu", label: "Speisekarte" },
-    { href: "#about", label: "Über uns" },
-    { href: "#contact", label: "Kontakt" },
+    { href: '#menu', label: 'Speisekarte' },
+    { href: '#about', label: 'Über uns' },
+    { href: '#events', label: 'Veranstaltungen' },
+    { href: '#contact', label: 'Kontakt' },
   ];
 
   return (
@@ -59,17 +60,17 @@ const Navbar = () => {
           height: isScrolled ? 56 : 64,
         }}
         transition={{
-          type: "spring",
+          type: 'spring',
           stiffness: 260,
           damping: 20,
         }}
         className={`
-          fixed top-6 left-1/2 -translate-x-1/2 z-50 
+          fixed top-6 left-1/2 -translate-x-1/2 z-50
           transition-all duration-300 ease-in-out
           ${
             isScrolled
-              ? "bg-white/95 backdrop-blur-sm shadow-lg"
-              : "bg-[#dfbf5b]/90 backdrop-blur-sm"
+              ? 'bg-white/95 backdrop-blur-sm shadow-lg'
+              : 'bg-[#dfbf5b]/90 backdrop-blur-sm'
           }
           md:rounded-2xl
           w-[calc(100%-2rem)] md:w-[35%] md:min-w-[500px]
@@ -80,7 +81,7 @@ const Navbar = () => {
           <motion.div
             className="flex items-center h-full px-5 gap-8"
             animate={{
-              gap: isScrolled ? "1.5rem" : "2rem",
+              gap: isScrolled ? '1.5rem' : '2rem',
             }}
             transition={{ duration: 0.3 }}
           >
@@ -95,15 +96,11 @@ const Navbar = () => {
                 href="/"
                 className={`
                   text-lg font-light tracking-wide hover:opacity-80 transition-opacity whitespace-nowrap
-                  ${isScrolled ? "text-stone-800" : "text-white"}
+                  ${isScrolled ? 'text-stone-800' : 'text-white'}
                 `}
               >
-                Due{" "}
-                <span
-                  className={`font-normal ${
-                    isScrolled ? "text-[#dfbf5b]" : "text-white"
-                  }`}
-                >
+                Due{' '}
+                <span className={`font-normal ${isScrolled ? 'text-[#dfbf5b]' : 'text-white'}`}>
                   Fratelli
                 </span>
               </Link>
@@ -119,17 +116,17 @@ const Navbar = () => {
                     text-sm transition-colors duration-200 relative group
                     ${
                       isScrolled
-                        ? "text-stone-700 hover:text-[#dfbf5b]"
-                        : "text-white/90 hover:text-white"
+                        ? 'text-stone-700 hover:text-[#dfbf5b]'
+                        : 'text-white/90 hover:text-white'
                     }
                   `}
                 >
                   <span className="relative z-10">{item.label}</span>
                   <span
                     className={`
-                    absolute -left-2 -right-2 top-1/2 -translate-y-1/2 h-[120%] rounded-lg opacity-0 
+                    absolute -left-2 -right-2 top-1/2 -translate-y-1/2 h-[120%] rounded-lg opacity-0
                     group-hover:opacity-100 transition-opacity duration-300 -z-1
-                    ${isScrolled ? "bg-stone-50/80" : "bg-white/10"}
+                    ${isScrolled ? 'bg-stone-50/80' : 'bg-white/10'}
                   `}
                   />
                 </Link>
@@ -154,15 +151,15 @@ const Navbar = () => {
                 <span
                   className={`
                     absolute w-5 h-0.5 transform transition-all duration-300 ease-in-out
-                    ${isScrolled ? "bg-stone-800" : "bg-white"}
-                    ${isOpen ? "rotate-45 translate-y-0" : "-translate-y-1.5"}
+                    ${isScrolled ? 'bg-stone-800' : 'bg-white'}
+                    ${isOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'}
                   `}
                 />
                 <span
                   className={`
                     absolute w-5 h-0.5 transform transition-all duration-300 ease-in-out
-                    ${isScrolled ? "bg-stone-800" : "bg-white"}
-                    ${isOpen ? "-rotate-45 translate-y-0" : "translate-y-1.5"}
+                    ${isScrolled ? 'bg-stone-800' : 'bg-white'}
+                    ${isOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'}
                   `}
                 />
               </div>
@@ -191,7 +188,7 @@ const Navbar = () => {
               className={`
                 fixed top-24 left-4 right-4 z-50 md:hidden
                 overflow-hidden rounded-xl
-                ${isScrolled ? "bg-white" : "bg-[#dfbf5b]"}
+                ${isScrolled ? 'bg-white' : 'bg-[#dfbf5b]'}
                 shadow-lg
               `}
             >
@@ -215,8 +212,8 @@ const Navbar = () => {
                         block py-3 px-4 text-[15px] font-medium rounded-lg transition-all duration-200
                         ${
                           isScrolled
-                            ? "text-stone-700 hover:text-[#dfbf5b] hover:bg-stone-50/70"
-                            : "text-white hover:bg-white/10"
+                            ? 'text-stone-700 hover:text-[#dfbf5b] hover:bg-stone-50/70'
+                            : 'text-white hover:bg-white/10'
                         }
                       `}
                     >
