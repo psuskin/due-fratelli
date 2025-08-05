@@ -4,15 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 type Category = {
-  id:
-    | 'antipasti'
-    | 'antipasti-warmes'
-    | 'pasta'
-    | 'pizza'
-    | 'risotto'
-    | 'pesce'
-    | 'carne'
-    | 'beilagen';
+  id: string;
   name: string;
   description?: string;
   pdfUrl: string;
@@ -38,62 +30,33 @@ const Menu = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Menu categories with PDF links
+  // Main menu categories - organized as requested
   const categories: Category[] = [
     {
-      id: 'antipasti',
-      name: 'Antipasti',
-      description: 'Italienische Vorspeisen und Appetithäppchen',
-      pdfUrl: '/pdf/antipasti.pdf',
+      id: 'mittag-del-mare',
+      name: 'Mittagskarte',
+      description: 'Unsere Mittagskarte mit frischen Meeresspezialitäten und saisonalen Gerichten',
+      pdfUrl: '/pdf/mittagskarte-due.pdf',
     },
     {
-      id: 'antipasti-warmes',
-      name: 'Warme Antipasti',
-      description: 'Warme italienische Vorspeisen',
-      pdfUrl: '/pdf/antipasti-warmes.pdf',
+      id: 'hauptspeisekarte',
+      name: 'Hauptspeisekarte',
+      description:
+        'Unsere komplette Speisekarte mit Antipasti, Pasta, Pizza, Fleisch- und Fischgerichten',
+      pdfUrl: '/pdf/hauptspeisekarte-due.pdf', // You'll need to provide the actual URL for the main menu
     },
     {
-      id: 'pasta',
-      name: 'Pasta',
-      description: 'Hausgemachte Pasta-Spezialitäten',
-      pdfUrl: '/pdf/pasta.pdf',
-    },
-    {
-      id: 'pizza',
-      name: 'Pizza',
-      description: 'Traditionelle Pizza aus dem Steinofen',
-      pdfUrl: '/pdf/pizza.pdf',
-    },
-    {
-      id: 'risotto',
-      name: 'Risotto',
-      description: 'Cremige Reis-Spezialitäten',
-      pdfUrl: '/pdf/risotto.pdf',
-    },
-    {
-      id: 'pesce',
-      name: 'Pesce',
-      description: 'Frische Fisch- und Meeresfrüchte',
-      pdfUrl: '/pdf/pesce.pdf',
-    },
-    {
-      id: 'carne',
-      name: 'Carne',
-      description: 'Ausgewählte Fleischgerichte',
-      pdfUrl: '/pdf/carne.pdf',
-    },
-    {
-      id: 'beilagen',
-      name: 'Beilagen',
-      description: 'Beilagen und Extras',
-      pdfUrl: '/pdf/beilagen.pdf',
+      id: 'desserts',
+      name: 'Dessertkarte',
+      description: 'Hausgemachte Desserts und erlesene Grappa-Auswahl',
+      pdfUrl: '/pdf/desserkarte-due.pdf',
     },
   ];
 
-  // PDF menu links
-  const pdfMenus = [
+  // Additional menu items (restored from original)
+  const additionalMenus = [
     {
-      id: 'desserts',
+      id: 'desserts-additional',
       name: 'Desserts & Grappa',
       description: 'Hausgemachte Desserts und erlesene Grappa-Auswahl',
       url: 'https://cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/files/uploaded/Dessert_und_Grappa_-_7-11-24.pdf?Expires=1753290971&Signature=jQThxG7eNpadD3paneOm14E0AspshHJ-9ascod~Ay8mS2uk5k05efHiN0l0LNkKYDqMb2bkWFUeVhBK-wP9LjpqSRrhbvkMSGk5HSXjP6eeWUleYxi94vgAilEL~owGQ6gBUWTEfm3-5qHl2dRYdqYcUs69M83fRynSTTnThxS4Fu6a~EL3WGIhP4sINM5QKR~~HlWOeYtiTDwFkeu4w4MqAVMKtx9sMAZEbubg~BxAUTn0TYlNFqD83DxvX3eKaUnqaZDHynGUNqnITgZA0ItNiDj2rHXKkDpGeh7AkgPySy4qkp6caW4BCBe8hS-~qRJviJg7gcLKvI5foJAtGxg__&Key-Pair-Id=K2NXBXLF010TJW',
@@ -105,15 +68,12 @@ const Menu = () => {
       url: 'https://cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/files/uploaded/29.03.25-3.pdf?Expires=1753290971&Signature=UDYmkafE6vW14BKL-RC-P4ojLAPf2WCT1HCQwFXzloncv9r-y7Dj73BR2dbzZBGHqge7Cv5~UP3417BPc9aCGSZWgxCFT4lZmSLXvGMmzGtp7jtwwhyt4emUiylOFT~iiau~r1~u9s-4iEaWPYBuDTnnmqMiwiVmwl1UqQmEQSKgdy3DfdNWubZdwhRVzuh2vteZVRW9q0GbYY~VrSJXqLQ~Xc8JfGwCSKc15YAqcmkS7v3u549i2I1d~6XBOszBRGfNa91WTxX~20qANqIP8XRSItlX8k1Mqbc3BzElFKkUddUbwzhbtygyv78YpYM8zsL6RDBotNLnePJu~RcJbw__&Key-Pair-Id=K2NXBXLF010TJW',
     },
     {
-      id: 'mittag-del-mare',
+      id: 'mittag-del-mare-additional',
       name: 'Mittag del Mare',
       description: 'Unsere Mittagskarte mit frischen Meeresspezialitäten',
       url: 'https://cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/files/uploaded/29.03.25-3.pdf?Expires=1753290971&Signature=UDYmkafE6vW14BKL-RC-P4ojLAPf2WCT1HCQwFXzloncv9r-y7Dj73BR2dbzZBGHqge7Cv5~UP3417BPc9aCGSZWgxCFT4lZmSLXvGMmzGtp7jtwwhyt4emUiylOFT~iiau~r1~u9s-4iEaWPYBuDTnnmqMiwiVmwl1UqQmEQSKgdy3DfdNWubZdwhRVzuh2vteZVRW9q0GbYY~VrSJXqLQ~Xc8JfGwCSKc15YAqcmkS7v3u549i2I1d~6XBOszBRGfNa91WTxX~20qANqIP8XRSItlX8k1Mqbc3BzElFKkUddUbwzhbtygyv78YpYM8zsL6RDBotNLnePJu~RcJbw__&Key-Pair-Id=K2NXBXLF010TJW',
     },
   ];
-
-  const leftCategories = categories.slice(0, 4);
-  const rightCategories = categories.slice(4, 8);
 
   const openPdfModal = (pdfUrl: string, menuName: string) => {
     // On mobile, open PDF in new tab instead of modal
@@ -166,7 +126,7 @@ const Menu = () => {
           </div>
         </motion.div>
 
-        {/* Menu Items Grid with Center Line */}
+        {/* Main Menu Items Grid - 3 columns */}
         <AnimatePresence mode="wait">
           <motion.div
             initial={{ opacity: 0 }}
@@ -175,131 +135,71 @@ const Menu = () => {
             transition={{ duration: 0.4 }}
             className="max-w-6xl mx-auto"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-6 relative">
-              {/* Center Line - Hidden on mobile, visible on lg and up */}
-              <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-yellow-600/30 to-transparent transform -translate-x-1/2" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {categories.map((category, index) => (
+                <motion.button
+                  key={category.id}
+                  onClick={() => openPdfModal(category.pdfUrl, category.name)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: index * 0.1,
+                    duration: 0.5,
+                  }}
+                  className="group cursor-pointer border-0 relative block w-full p-8 bg-white rounded-lg overflow-hidden border border-stone-100 hover:border-yellow-600/20 transition-all duration-300"
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {/* Filling background effect */}
+                  <div className="absolute inset-0 bg-yellow-600/5 transform origin-bottom transition-transform duration-300 ease-out scale-y-0 group-hover:scale-y-100" />
 
-              {/* Left Side - 4 cards with right-aligned text */}
-              <div className="space-y-6">
-                {leftCategories.map((category, index) => (
-                  <motion.button
-                    key={category.id}
-                    onClick={() => openPdfModal(category.pdfUrl, category.name)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: index * 0.1,
-                      duration: 0.5,
-                    }}
-                    className="group cursor-pointer border-0 relative block w-full p-8 bg-white overflow-hidden transition-all duration-300"
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {/* Filling background effect */}
-                    <div className="absolute inset-0 bg-yellow-600/5 transform origin-bottom transition-transform duration-300 ease-out scale-y-0 group-hover:scale-y-100" />
-
-                    {/* Content - Right aligned on lg and up */}
-                    <div className="relative z-10 text-left lg:text-right">
-                      <div className="flex items-start justify-between lg:flex-row-reverse mb-4">
-                        <h4 className="text-xl font-medium text-stone-800 group-hover:text-yellow-600 transition-colors duration-300">
-                          {category.name}
-                        </h4>
-                        {/* Mobile indicator */}
-                        {isMobile && (
-                          <div className="flex items-center text-yellow-600 ml-2">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                              />
-                            </svg>
-                          </div>
-                        )}
-                      </div>
-
-                      {category.description && (
-                        <p className="text-sm text-stone-500 group-hover:text-stone-600 transition-colors duration-300 leading-relaxed">
-                          {category.description}
-                        </p>
+                  {/* Content */}
+                  <div className="relative z-10 text-center">
+                    <div className="flex items-center justify-center mb-4">
+                      <h4 className="text-xl font-medium text-stone-800 group-hover:text-yellow-600 transition-colors duration-300">
+                        {category.name}
+                      </h4>
+                      {/* Mobile indicator */}
+                      {isMobile && (
+                        <div className="flex items-center text-yellow-600 ml-2">
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </div>
                       )}
-
-                      <div className="mt-4 text-xs text-yellow-600 font-medium uppercase tracking-wide">
-                        {isMobile ? 'PDF öffnen' : 'Menü anzeigen'}
-                      </div>
-
-                      {/* Bottom border */}
-                      <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-yellow-600 transition-colors duration-300" />
                     </div>
-                  </motion.button>
-                ))}
-              </div>
 
-              {/* Right Side - 4 cards with left-aligned text */}
-              <div className="space-y-6">
-                {rightCategories.map((category, index) => (
-                  <motion.button
-                    key={category.id}
-                    onClick={() => openPdfModal(category.pdfUrl, category.name)}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: (index + 4) * 0.1,
-                      duration: 0.5,
-                    }}
-                    className="group cursor-pointer relative block w-full p-8 bg-white overflow-hidden transition-all duration-300 border-0"
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {/* Filling background effect */}
-                    <div className="absolute inset-0 bg-yellow-600/5 transform origin-bottom transition-transform duration-300 ease-out scale-y-0 group-hover:scale-y-100" />
+                    {category.description && (
+                      <p className="text-sm text-stone-500 group-hover:text-stone-600 transition-colors duration-300 leading-relaxed mb-4">
+                        {category.description}
+                      </p>
+                    )}
 
-                    {/* Content - Left aligned */}
-                    <div className="relative z-10 text-left">
-                      <div className="flex items-start justify-between mb-4">
-                        <h4 className="text-xl font-medium text-stone-800 group-hover:text-yellow-600 transition-colors duration-300">
-                          {category.name}
-                        </h4>
-                        {/* Mobile indicator */}
-                        {isMobile && (
-                          <div className="flex items-center text-yellow-600 ml-2">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                              />
-                            </svg>
-                          </div>
-                        )}
-                      </div>
-
-                      {category.description && (
-                        <p className="text-sm text-stone-500 group-hover:text-stone-600 transition-colors duration-300 leading-relaxed">
-                          {category.description}
-                        </p>
-                      )}
-
-                      <div className="mt-4 text-xs text-yellow-600 font-medium uppercase tracking-wide">
-                        {isMobile ? 'PDF öffnen' : 'Menü anzeigen'}
-                      </div>
-
-                      {/* Bottom border */}
-                      <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-yellow-600 transition-colors duration-300" />
+                    <div className="text-xs text-yellow-600 font-medium uppercase tracking-wide">
+                      {isMobile ? 'PDF öffnen' : 'Menü anzeigen'}
                     </div>
-                  </motion.button>
-                ))}
-              </div>
+
+                    {/* Highlight for main menu */}
+                    {/* {category.id === 'hauptspeisekarte' && (
+                      <div className="absolute -top-2 -right-2 bg-yellow-600 text-white text-xs px-2 py-1 rounded-full">
+                        Hauptmenü
+                      </div>
+                    )} */}
+
+                    {/* Bottom border */}
+                    <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-stone-100 group-hover:bg-yellow-600 transition-colors duration-300" />
+                  </div>
+                </motion.button>
+              ))}
             </div>
           </motion.div>
         </AnimatePresence>
@@ -415,7 +315,7 @@ const Menu = () => {
           )}
         </AnimatePresence>
 
-        {/* Additional PDF Menus Section */}
+        {/* Additional Menus Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -428,7 +328,7 @@ const Menu = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pdfMenus.map((menu) => (
+            {additionalMenus.map((menu) => (
               <motion.a
                 key={menu.id}
                 href={menu.url}
