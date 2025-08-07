@@ -7,13 +7,13 @@ import Image from "next/image";
 
 const OpeningHours = () => {
   const hours = [
-    { day: "Monday", hours: "12 - 10 pm" },
-    { day: "Tuesday", hours: "12 - 10 pm" },
-    { day: "Wednesday", hours: "Rest day" },
-    { day: "Thursday", hours: "12 - 10 pm" },
-    { day: "Friday", hours: "12 - 10 pm" },
-    { day: "Saturday", hours: "12 - 10 pm" },
-    { day: "Sunday", hours: "12 - 10 pm" },
+    { day: "Monday", hours: "12 - 22 Uhr" },
+    { day: "Tuesday", hours: "12 - 22 Uhr" },
+    { day: "Wednesday", hours: "Ruhetag" },
+    { day: "Thursday", hours: "12 - 22 Uhr" },
+    { day: "Friday", hours: "12 - 22 Uhr" },
+    { day: "Saturday", hours: "12 - 22 Uhr" },
+    { day: "Sunday", hours: "12 - 22 Uhr" },
   ];
 
   return (
@@ -66,7 +66,7 @@ const OpeningHours = () => {
                 <Clock className="w-6 h-6 text-[#dfbf5b]" />
               </div>
               <h3 className="text-2xl font-light text-stone-800">
-                Our Schedule
+                Unsere Öffnungszeiten
               </h3>
             </div>
 
@@ -84,7 +84,7 @@ const OpeningHours = () => {
                   <span className="text-stone-700">{day.day}</span>
                   <span
                     className={
-                      day.hours === "Rest day"
+                      day.hours === "Ruhetag"
                         ? "text-[#dfbf5b] font-medium"
                         : "text-stone-500"
                     }
