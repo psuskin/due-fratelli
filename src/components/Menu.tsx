@@ -53,27 +53,15 @@ const Menu = () => {
     },
   ];
 
-  // Additional menu items (restored from original)
-  // const additionalMenus = [
-  //   {
-  //     id: 'desserts-additional',
-  //     name: 'Desserts & Grappa',
-  //     description: 'Hausgemachte Desserts und erlesene Grappa-Auswahl',
-  //     url: 'https://cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/files/uploaded/Dessert_und_Grappa_-_7-11-24.pdf?Expires=1753290971&Signature=jQThxG7eNpadD3paneOm14E0AspshHJ-9ascod~Ay8mS2uk5k05efHiN0l0LNkKYDqMb2bkWFUeVhBK-wP9LjpqSRrhbvkMSGk5HSXjP6eeWUleYxi94vgAilEL~owGQ6gBUWTEfm3-5qHl2dRYdqYcUs69M83fRynSTTnThxS4Fu6a~EL3WGIhP4sINM5QKR~~HlWOeYtiTDwFkeu4w4MqAVMKtx9sMAZEbubg~BxAUTn0TYlNFqD83DxvX3eKaUnqaZDHynGUNqnITgZA0ItNiDj2rHXKkDpGeh7AkgPySy4qkp6caW4BCBe8hS-~qRJviJg7gcLKvI5foJAtGxg__&Key-Pair-Id=K2NXBXLF010TJW',
-  //   },
-  //   {
-  //     id: 'tagesempfehlungen',
-  //     name: 'Tagesempfehlungen',
-  //     description: 'Täglich wechselnde Spezialitäten unserer Küche',
-  //     url: 'https://cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/files/uploaded/29.03.25-3.pdf?Expires=1753290971&Signature=UDYmkafE6vW14BKL-RC-P4ojLAPf2WCT1HCQwFXzloncv9r-y7Dj73BR2dbzZBGHqge7Cv5~UP3417BPc9aCGSZWgxCFT4lZmSLXvGMmzGtp7jtwwhyt4emUiylOFT~iiau~r1~u9s-4iEaWPYBuDTnnmqMiwiVmwl1UqQmEQSKgdy3DfdNWubZdwhRVzuh2vteZVRW9q0GbYY~VrSJXqLQ~Xc8JfGwCSKc15YAqcmkS7v3u549i2I1d~6XBOszBRGfNa91WTxX~20qANqIP8XRSItlX8k1Mqbc3BzElFKkUddUbwzhbtygyv78YpYM8zsL6RDBotNLnePJu~RcJbw__&Key-Pair-Id=K2NXBXLF010TJW',
-  //   },
-  //   {
-  //     id: 'mittag-del-mare-additional',
-  //     name: 'Mittag del Mare',
-  //     description: 'Unsere Mittagskarte mit frischen Meeresspezialitäten',
-  //     url: 'https://cdn.website-editor.net/s/9ac4331451a84393a6206256715af4cf/files/uploaded/29.03.25-3.pdf?Expires=1753290971&Signature=UDYmkafE6vW14BKL-RC-P4ojLAPf2WCT1HCQwFXzloncv9r-y7Dj73BR2dbzZBGHqge7Cv5~UP3417BPc9aCGSZWgxCFT4lZmSLXvGMmzGtp7jtwwhyt4emUiylOFT~iiau~r1~u9s-4iEaWPYBuDTnnmqMiwiVmwl1UqQmEQSKgdy3DfdNWubZdwhRVzuh2vteZVRW9q0GbYY~VrSJXqLQ~Xc8JfGwCSKc15YAqcmkS7v3u549i2I1d~6XBOszBRGfNa91WTxX~20qANqIP8XRSItlX8k1Mqbc3BzElFKkUddUbwzhbtygyv78YpYM8zsL6RDBotNLnePJu~RcJbw__&Key-Pair-Id=K2NXBXLF010TJW',
-  //   },
-  // ];
+  Additional menu items (restored from original)
+  const additionalMenus = [
+    {
+      id: 'tagesempfehlungen',
+      name: 'Tagesempfehlungen',
+      description: 'Täglich wechselnde Spezialitäten unserer Küche',
+      url: '/pdf/tagesempfehlung-due.pdf',
+    },
+  ];
 
   const openPdfModal = (pdfUrl: string, menuName: string) => {
     // On mobile, open PDF in new tab instead of modal
@@ -316,7 +304,7 @@ const Menu = () => {
         </AnimatePresence>
 
         {/* Additional Menus Section */}
-{/*         <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -371,7 +359,7 @@ const Menu = () => {
               </motion.a>
             ))}
           </div>
-        </motion.div> */}
+        </motion.div>
       </div>
 
       {/* Custom CSS for hiding scrollbar */}
