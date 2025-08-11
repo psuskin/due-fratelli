@@ -53,7 +53,7 @@ const Menu = () => {
     },
   ];
 
-  Additional menu items (restored from original)
+  // Additional menu items (restored from original)
   const additionalMenus = [
     {
       id: 'tagesempfehlungen',
