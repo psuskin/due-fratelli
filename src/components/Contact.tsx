@@ -215,7 +215,7 @@ const Contact = () => {
               <div className="space-y-4">
                 <div className="flex items-center">
                   <MapPin className="h-5 w-5 text-amber-600 mr-3" />
-                  <span>Vorderreihe 1A, Travemünde</span>
+                  <span>Vorderreihe 17, Travemünde</span>
                 </div>
                 <div className="flex items-center">
                   <Phone className="h-5 w-5 text-amber-600 mr-3" />
@@ -223,7 +223,7 @@ const Contact = () => {
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-amber-600 mr-3" />
-                  <span>info@duefratelli.com</span>
+                  <span>info@due-fratelli-del-mare.de</span>
                 </div>
               </div>
 
