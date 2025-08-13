@@ -32,9 +32,9 @@ export default function Impressum() {
           <p className="mb-6">
             Fratelli Travemünde GmbH
             <br />
-            Ballindamm 15
+            Vorderreihe 17
             <br />
-            20095 Hamburg
+            23570 Lübeck
             <br />
             HRB 186925
           </p>
