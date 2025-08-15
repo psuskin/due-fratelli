@@ -29,7 +29,7 @@ const About = () => {
               >
                 <Image
                   src="/images/Due_Frattelli_10.jpg"
-                  alt="Chef Miri at Ristorante Due Fratelli"
+                  alt="Chef at Ristorante Due Fratelli"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1920px) 100vw, 50vw"
@@ -102,12 +102,11 @@ const About = () => {
                 </h3>
                 <div className="text-xl text-stone-600 leading-relaxed">
                   <p>
-                    Mein Name ist <span className="font-medium">Miri</span> und
-                    ich führe das{" "}
+                    Wir sind das{" "}
                     <span className="font-medium italic">
                       Ristorante Due Fratelli – il gusto del mare
                     </span>{" "}
-                    in Travemünde seit Mai 2020.
+                    und sind in Travemünde seit Mai 2020.
                   </p>
                 </div>
               </div>
