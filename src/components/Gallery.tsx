@@ -34,7 +34,7 @@ const images = [
     src: "/images/Due_Frattelli_06.jpg",
   },
   {
-    src: "/images/Due_Frattelli_10.jpg",
+    src: "/images/Due_Frattelli_34.jpg",
   },
   {
     src: "/images/Due_Frattelli_32.jpg",

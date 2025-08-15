@@ -28,7 +28,7 @@ const About = () => {
                 className="absolute inset-0 rounded-none lg:rounded-br-[200px]"
               >
                 <Image
-                  src="/images/Due_Frattelli_10.jpg"
+                  src="/images/Due_Frattelli_26.jpg"
                   alt="Chef at Ristorante Due Fratelli"
                   fill
                   className="object-cover"
